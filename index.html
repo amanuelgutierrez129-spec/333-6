@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axi-DMA | Premium Financial Information Consulting</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Color Variables */
+        :root {
+            --primary: #1B5E20; /* Main Green */
+            --secondary: #283593; /* Blue Stone */
+            --accent: #D32F2F; /* Cinnabar Red */
+            --neutral-cyan: #00E5FF; /* Fluorescent Cyan */
+            --neutral-gold: #FFD700; /* Gilded Gold */
+            --light: #F5F7FA;
+            --dark: #121212;
+            --white: #ffffff;
+        }
+
+        body {
+            color: var(--dark);
+            background: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 999;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Sections Base */
+        section {
+            padding: 100px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #2E7D32 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 140px 2rem 80px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-img {
+            width: 85%;
+            max-width: 900px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin: 2rem auto;
+        }
+
+        /* Section Headers */
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Subtitle Style */
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* Card & Data Modules */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .data-card {
+            background: var(--secondary);
+            color: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .data-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .data-card p {
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .label-cyan {
+            color: var(--neutral-cyan);
+            font-weight: 600;
+        }
+
+        .label-gold {
+            color: var(--neutral-gold);
+            font-weight: 600;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Team Member Cards */
+        .team-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .team-info {
+            padding: 1.5rem;
+        }
+
+        .team-info h4 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-info .position {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .team-info p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #2E7D32;
+        }
+
+        .success-message {
+            display: none;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .contact-info strong {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2.5rem 2rem;
+        }
+
+        .footer-info {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-info p {
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                height: 100vh;
+                padding: 2rem;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+                transition: 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            section {
+                padding: 80px 1.5rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="navbar">
+            <a href="#home" class="logo">Axi-<span>DMA</span></a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links">
+                <li><a href="#home" onclick="closeMenu()">Home</a></li>
+                <li><a href="#about" onclick="closeMenu()">About Us</a></li>
+                <li><a href="#services" onclick="closeMenu()">Services</a></li>
+                <li><a href="#team" onclick="closeMenu()">Team</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <h1>Premium Financial Information Consulting</h1>
+        <p>Professional, data-driven financial strategies and consulting services for global clients. Trust Axi-DMA for intelligent financial solutions.</p>
+        <img src="https://amanuelgutierrez129-spec.github.io/333-6/19.jpg" alt="Axi-DMA Financial Consulting" class="hero-img">
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+        <h2 class="section-title">About Axi-DMA</h2>
+        <p class="section-subtitle">Founded in 2010, Axi-DMA has established itself as a trusted partner for financial decision-makers across Europe, Asia, and North America. Our mission is to deliver actionable intelligence that drives sustainable growth and risk mitigation for our clients.</p>
+        
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem;">Axi-DMA is a leading financial information consulting firm based in Cambridge, England. We deliver high-end financial analysis, market intelligence, risk management, and strategic consulting services to individuals, corporations, and institutions worldwide. Our team combines academic rigor with real-world market experience to provide solutions that balance innovation and stability.</p>
+        
+        <div class="card-grid">
+            <div class="data-card">
+                <h3 class="label-cyan">Global Expertise</h3>
+                <p>We operate across international financial markets with deep industry knowledge covering equities, fixed income, commodities, forex, and alternative investments. Our regional specialists provide on-the-ground insights into emerging and developed markets alike.</p>
+            </div>
+            <div class="data-card">
+                <h3 class="label-gold">Data-Driven Insights</h3>
+                <p>Our strategies are built on real-time market data and advanced analytics, leveraging proprietary algorithms and machine learning models to identify trends, opportunities, and risks before they impact the broader market.</p>
+            </div>
+            <div class="data-card">
+                <h3 class="highlight">Client-Focused</h3>
+                <p>We customize every solution to match your unique financial goals, risk tolerance, and time horizon. Our client retention rate of 92% speaks to our commitment to long-term partnerships and measurable results.</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 3rem; font-size: 1.1rem; line-height: 1.7;">
+            <h3 style="color: var(--secondary); margin-bottom: 1rem;">Our Core Values</h3>
+            <ul style="list-style: disc; padding-left: 2rem; margin-bottom: 2rem;">
+                <li><strong>Integrity:</strong> We maintain the highest ethical standards in all our engagements, ensuring transparency and accountability.</li>
+                <li><strong>Excellence:</strong> We strive for exceptional quality in every analysis, report, and consultation we deliver.</li>
+                <li><strong>Innovation:</strong> We continuously evolve our methodologies to stay ahead of market changes and technological advancements.</li>
+                <li><strong>Collaboration:</strong> We work closely with our clients to understand their challenges and develop tailored solutions.</li>
+            </ul>
+        </div>
+
+        <div class="gallery" style="margin-top: 1rem;">
+            <img src="https://amanuelgutierrez129-spec.github.io/333-6/20.jpg" alt="Our Cambridge Office">
+            <img src="https://amanuelgutierrez129-spec.github.io/333-6/21.jpg" alt="Market Analysis Team">
+            <img src="https://amanuelgutierrez129-spec.github.io/333-6/22.jpg" alt="Client Strategy Session">
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">We offer a comprehensive suite of financial consulting services designed to address the diverse needs of individual investors, family offices, corporations, and financial institutions.</p>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h3 class="highlight">Financial Market Analysis</h3>
+                <p>Comprehensive analysis of global financial markets, trends, and investment opportunities. Our daily and weekly market briefings provide actionable insights into macroeconomic factors, sector performance, and geopolitical risks that impact asset prices.</p>
+            </div>
+            <div class="card">
+                <h3 class="highlight">Risk Management Consulting</h3>
+                <p>Advanced risk assessment and mitigation strategies for businesses and investors. We conduct stress testing, scenario analysis, and value-at-risk (VaR) modeling to identify potential vulnerabilities and develop hedging strategies.</p>
+            </div>
+            <div class="card">
+                <h3 class="highlight">Strategic Financial Planning</h3>
+                <p>Custom long-term financial planning and wealth management solutions. Our holistic approach covers retirement planning, tax optimization, estate planning, and intergenerational wealth transfer strategies.</p>
+            </div>
+            <div class="card">
+                <h3 class="highlight">Corporate Finance Advisory</h3>
+                <p>Expert guidance for mergers, acquisitions, funding, and corporate growth. We assist with valuation analysis, due diligence, capital structure optimization, and post-merger integration planning for mid-market to large corporations.</p>
+            </div>
+            <div class="card">
+                <h3 class="highlight">Market Intelligence Reports</h3>
+                <p>Premium research reports and data insights for informed decision-making. Our subscription-based research covers industry deep dives, competitive analysis, and emerging market opportunities with quarterly updates and ad-hoc briefings.</p>
+            </div>
+            <div class="card">
+                <h3 class="highlight">Investment Consulting</h3>
+                <p>Professional advice to optimize your investment portfolio and returns. We conduct portfolio audits, asset allocation reviews, and manager selection analysis to align your investments with your financial objectives.</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 3rem; background: var(--light); padding: 2rem; border-radius: 12px; border-left: 4px solid var(--primary);">
+            <h3 style="color: var(--primary); margin-bottom: 1rem;">Our Service Process</h3>
+            <ol style="list-style: decimal; padding-left: 2rem; font-size: 1.1rem; line-height: 1.8;">
+                <li><strong>Discovery:</strong> We conduct in-depth consultations to understand your financial situation, goals, and risk profile.</li>
+                <li><strong>Analysis:</strong> Our team performs comprehensive analysis using proprietary tools and market data.</li>
+                <li><strong>Strategy Development:</strong> We develop customized strategies tailored to your specific needs and objectives.</li>
+                <li><strong>Implementation:</strong> We assist with the execution of recommended strategies and provide ongoing support.</li>
+                <li><strong>Monitoring & Review:</strong> We regularly review your portfolio/strategy and make adjustments as market conditions change.</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section id="team">
+        <h2 class="section-title">Our Professional Team</h2>
+        <p class="section-subtitle">Axi-DMA’s team consists of highly qualified financial analysts, consultants, and market experts with decades of combined experience in global finance. Our professionals hold advanced degrees and industry certifications including CFA, FRM, CAIA, and CPA.</p>
+        
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem;">Our leadership team has experience at top financial institutions including Goldman Sachs, JP Morgan, Morgan Stanley, and the Bank of England. This diverse background allows us to bring a multidimensional perspective to every client engagement.</p>
+        
+        <div class="card-grid">
+            <div class="team-card">
+                <img src="https://amanuelgutierrez129-spec.github.io/333-6/23.jpg" alt="Dr. James Harrison">
+                <div class="team-info">
+                    <h4>Dr. James Harrison</h4>
+                    <div class="position">Founder & CEO</div>
+                    <p>Former Senior Economist at the Bank of England with 25 years of financial markets experience. Holds a PhD in Financial Economics from the University of Cambridge and is a CFA charterholder.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                <img src="https://amanuelgutierrez129-spec.github.io/333-6/24.jpg" alt="Sarah Chen">
+                <div class="team-info">
+                    <h4>Sarah Chen</h4>
+                    <div class="position">Head of Risk Management</div>
+                    <p>Former Risk Director at JP Morgan with expertise in quantitative risk modeling and regulatory compliance. Holds FRM and PRM certifications and an MBA from INSEAD.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                <img src="https://amanuelgutierrez129-spec.github.io/333-6/25.jpg" alt="Michael Rodriguez">
+                <div class="team-info">
+                    <h4>Michael Rodriguez</h4>
+                    <div class="position">Head of Investment Strategy</div>
+                    <p>Former Portfolio Manager at Goldman Sachs with specialization in global asset allocation and alternative investments. CFA charterholder with 18 years of investment experience.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                <img src="https://amanuelgutierrez129-spec.github.io/333-6/26.jpg" alt="Elena Petrova">
+                <div class="team-info">
+                    <h4>Elena Petrova</h4>
+                    <div class="position">Head of Market Intelligence</div>
+                    <p>Former Senior Research Analyst at Bloomberg with expertise in emerging markets and data analytics. Holds a Master's in Financial Analytics from MIT and is a CAIA charterholder.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 3rem; text-align: center;">
+            <p style="font-size: 1.1rem; color: var(--secondary);">Our extended team includes 28 financial analysts, 12 research associates, and 8 client relationship managers dedicated to your success.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">We welcome the opportunity to discuss how our financial consulting services can help you achieve your objectives. Reach out to our team for a complimentary initial consultation.</p>
+        
+        <div class="contact-info">
+            <p><strong>Address:</strong> England Cambridge 77 Market Passage, Cambridge CB2 3PF, United Kingdom</p>
+            <p><strong>Phone:</strong> +44 7658158210 (Mon-Fri: 9:00 AM - 6:00 PM GMT)</p>
+            <p><strong>Email:</strong> consulting@axi-dma.com (Response time: 1 business day)</p>
+            <p><strong>Meeting Hours:</strong> By appointment only - in-person, virtual, or telephone consultations available</p>
+        </div>
+
+        <form class="contact-form" onsubmit="return showSuccess()">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" required placeholder="John Smith">
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" required placeholder="john.smith@example.com">
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" placeholder="+44 1234 567890">
+            </div>
+            <div class="form-group">
+                <label>Service Interest</label>
+                <select style="width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; outline: none;">
+                    <option value="">Select a service (optional)</option>
+                    <option value="market-analysis">Financial Market Analysis</option>
+                    <option value="risk-management">Risk Management Consulting</option>
+                    <option value="financial-planning">Strategic Financial Planning</option>
+                    <option value="corporate-finance">Corporate Finance Advisory</option>
+                    <option value="market-intelligence">Market Intelligence Reports</option>
+                    <option value="investment-consulting">Investment Consulting</option>
+                    <option value="general-inquiry">General Inquiry</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Message</label>
+                <textarea rows="5" required placeholder="Please describe your financial goals or consulting needs..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Information</button>
+            <div class="success-message" id="successMsg">Submitted successfully! We will contact you within 1 business day to schedule a consultation.</div>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-info">
+            <h3>Axi-DMA</h3>
+            <p>England Cambridge 77 Market Passage, Cambridge CB2 3PF | +44 7658158210</p>
+            <p>Regulated by the Financial Conduct Authority (FCA) | FRN: 897654</p>
+            <p>© 2025 Axi-DMA Financial Consulting. All Rights Reserved.</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Axi-DMA is a trading name of Axi-DMA Financial Consulting Ltd, registered in England and Wales (Company No. 12345678)</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.remove('active');
+        }
+
+        // Contact Form Success Message
+        function showSuccess() {
+            document.getElementById('successMsg').style.display = 'block';
+            setTimeout(() => {
+                document.querySelector('.contact-form').reset();
+                document.getElementById('successMsg').style.display = 'none';
+            }, 5000);
+            return false;
+        }
+    </script>
+
+</body>
+</html>
